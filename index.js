@@ -10,6 +10,7 @@ const clientId = ""; //the bots client id
 const botstatus = "" //bots custum status
 const madeby = ""; //made by footer for example Made By {name} 
 const apikey = ""; //api key get from https://discord.gg/SbhE6yTQ2g for free
+const endpoint = "http://45.90.13.151:6041" //bypassi api endpoint ONLY CHANGE WHEN ANNOUNCEMENT
 
 const client = new Client({ intents: 3276799 });
 const rest = new REST({ version: '9' }).setToken(token);
@@ -124,7 +125,7 @@ async function delta(interaction) {
     if (link.startsWith('https://gateway.platoboost.com/a/8?id=')) {
         const urlParams = new URLSearchParams(new URL(link).search);
         const hwid = urlParams.get('id');
-        const apiUrl = `http://132.145.68.135:6056/?url=${link}&apikey=${apikey}`;
+        const apiUrl = `${endpoint}/?url=${link}&apikey=${apikey}`;
 
         try {
             const response = await axios.get(apiUrl);
@@ -210,7 +211,7 @@ async function hydrogen(interaction) {
     if (link.startsWith('https://gateway.platoboost.com/a/2569?id=')) {
         const urlParams = new URLSearchParams(new URL(link).search);
         const hwid = urlParams.get('id');
-        const apiUrl = `http://132.145.68.135:6056/?url=${link}&apikey=${apikey}`;
+        const apiUrl = `${endpoint}/?url=${link}&apikey=${apikey}`;
 
         try {
             const response = await axios.get(apiUrl);
@@ -297,7 +298,7 @@ async function vegax(interaction) {
         const encodedLink = (encodeURI(link))
         const urlParams = new URLSearchParams(new URL(link).search);
         const hwid = urlParams.get('hwid');
-        const apiUrl = `http://132.145.68.135:6056/?url=${encodedLink}&apikey=${apikey}`;
+        const apiUrl = `${endpoint}/?url=${encodedLink}&apikey=${apikey}`;
 
         try {
             const response = await axios.get(apiUrl);
@@ -370,7 +371,6 @@ async function vegax(interaction) {
 async function fluxus(interaction) {
     const link = interaction.options.getString('link');
     const box = "```";
-    const encodedLink = encodeURI(link);
 
     await interaction.reply({
         embeds: [{
@@ -386,7 +386,7 @@ async function fluxus(interaction) {
     if (link.startsWith('https://flux.li/android/external/start.php?HWID=')) {
         const urlParams = new URLSearchParams(new URL(link).search);
         const HWID = urlParams.get('HWID');
-        const apiUrl = `http://132.145.68.135:6056/?url=${encodedLink}&apikey=${apikey}`;
+        const apiUrl = `${endpoint}/?url=${link}&apikey=${apikey}`;
 
         try {
             const response = await axios.get(apiUrl);
@@ -457,4 +457,3 @@ async function fluxus(interaction) {
 }
 
 client.login(token);
-
